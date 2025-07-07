@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚂 Rail Mitra</h1>
+            <p>Find trains between stations</p>
+        </div>
+
+        <div class="search-section">
+            <div class="search-tabs">
+                <button class="tab-btn active" id="codeTab">Search by Code</button>
+                <button class="tab-btn" id="nameTab">Search by Name</button>
+            </div>
+            
+            <form class="search-form" id="searchForm">
+                <div id="codeSearch" class="search-mode">
+                    <div class="form-group">
+                        <label for="sourceCode">Source Station Code</label>
+                        <input type="text" id="sourceCode" placeholder="e.g., HWR" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="destinationCode">Destination Station Code</label>
+                        <input type="text" id="destinationCode" placeholder="e.g., CSMT" required>
+                    </div>
+                </div>
+                
+                <div id="nameSearch" class="search-mode" style="display: none;">
+                    <div class="form-group">
+                        <label for="sourceName">Source Station Name</label>
+                        <input type="text" id="sourceName" placeholder="e.g., Howrah Junction">
+                    </div>
+                    <div class="form-group">
+                        <label for="destinationName">Destination Station Name</label>
+                        <input type="text" id="destinationName" placeholder="e.g., Mumbai Central">
+                    </div>
+                </div>
+                
+                <button type="submit" class="search-btn" id="searchBtn">Search Trains</button>
+            </form>
+            
+            <div class="popular-routes">
+                <h3>Popular Routes</h3>
+                <div class="route-chips">
+                    <button class="route-chip" data-source="HWR" data-dest="CSMT">HWR → CSMT</button>
+                    <button class="route-chip" data-source="NDLS" data-dest="CSMT">NDLS → CSMT</button>
+                    <button class="route-chip" data-source="HWR" data-dest="NDLS">HWR → NDLS</button>
+                    <button class="route-chip" data-source="CSMT" data-dest="HWR">CSMT → HWR</button>
+                    <button class="route-chip" data-source="NDLS" data-dest="LKO">NDLS → LKO</button>
+                    <button class="route-chip" data-source="MAS" data-dest="SC">MAS → SC</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Searching for trains...</p>
+            </div>
+
+            <div id="error" class="error-message" style="display: none;"></div>
+
+            <div id="results" style="display: none;">
+                <div class="results-header">
+                    <div class="results-count" id="resultsCount"></div>
+                </div>
+                <div id="trainsList"></div>
+            </div>
+
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="no-results-icon">🚫</div>
+                <h3>No trains found</h3>
+                <p>Try different station codes or check your spelling</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
