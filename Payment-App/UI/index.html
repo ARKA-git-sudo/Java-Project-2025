@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Mca</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="container">
+
+
+
+    <div class="payment-section">
+
+      <div class="course-section">
+        <h1 class="course-title">
+          MCA Online: Learn AI/ML and development from our best instrutors
+        </h1>
+
+        <div class="course-banner">
+          <img src="mca-online-course.jpg" />
+          <div class="live-badge">5% discount</div>
+        </div>
+
+        <div class="course-description">
+          
+          <strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad velit similique, inventore maxime at ab commodi
+          nemo ullam illum reiciendis neque voluptas natus est sit explicabo in accusamus voluptatibus aut illo
+          accusantium temporibus? Possimus officia asperiores quod quibusdam, ratione distinctio similique unde magnam
+          cumque rerum aperiam ipsa, dolore est tempore!</strong>
+        </div>
+
+        <div class="course-features">
+          <h3>Course Offers</h3>
+          <p>1000% No Placement</p>
+          <p>200+ hours recorded Class</p>
+          <p>24*7 Support</p>
+          <div class="show-more">
+            <span id="show-more-text">Show more</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+      </div>
+
+      <h1>Payment Details</h1>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter Name" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter Email" />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <div class="phone-input">
+          <div class="flag">
+            <img src="image.png" alt="IN" />
+            <span>+91</span>
+          </div>
+          <input type="tel" id="phone" placeholder="Enter Phone no" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="coupon">Coupon Code</label>
+        <div class="coupon-container">
+          <input type="text" id="coupon" placeholder="Enter coupon code" />
+          <span class="clear-coupon"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="success-message">
+           Coupon added
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-row">
+          <span>Original Price</span>
+          <span>₹100000.00</span>
+        </div>
+        <div class="price-row">
+          <span>Discounted Price</span>
+          <span class="negative-amount">-₹5000.00</span>
+        </div>
+        <div class="price-row total-row">
+          <span>Total Amount</span>
+          <span>₹95000.00</span>
+        </div>
+      </div>
+
+      <button class="pay-button">
+        Pay ₹95000.00
+      </button>
+      
+    </div>
+   
+
+
+  </div>
+
+  </div>
+
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
