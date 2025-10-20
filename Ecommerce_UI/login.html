@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Sasta Bazar</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"/>
+  <style>
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    *::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveBackground 20s linear infinite;
+    }
+
+    @keyframes moveBackground {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .login-container {
+      background: white;
+      border-radius: 25px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 450px;
+      width: 100%;
+      animation: fadeIn 0.6s ease-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-logo {
+      text-align: center;
+      margin-bottom: 2rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .brand-logo i {
+      font-size: 60px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: pulse 2s infinite;
+    }
+
+    .brand-logo h2 {
+      color: #333;
+      margin-top: 1rem;
+      font-weight: 800;
+      font-size: 2rem;
+    }
+
+    .brand-logo p {
+      color: #6c757d;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-control {
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .form-control:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      outline: none;
+      transform: translateY(-2px);
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .password-toggle {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: #f8f9fa;
+      border: 2px solid #e0e0e0;
+      border-left: none;
+    }
+
+    .password-toggle:hover {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    .btn-login {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      padding: 1rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .alert-custom {
+      border-radius: 12px;
+      border: none;
+      padding: 1rem 1.5rem;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .alert-success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+
+    .alert-danger {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+    }
+
+    .text-center a {
+      color: #667eea;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .text-center a:hover {
+      color: #764ba2;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 576px) {
+      .login-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .brand-logo i {
+        font-size: 50px;
+      }
+
+      .brand-logo h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="brand-logo">
+      <i class="fas fa-shopping-bag"></i>
+      <h2>Sasta Bazar</h2>
+      <p class="text-muted">Login to your account</p>
+    </div>
+    
+    <div id="alert-container"></div>
+    
+    <form id="loginForm">
+      <div class="mb-3">
+        <label class="form-label"><i class="fas fa-user"></i> Email or Phone</label>
+        <input type="text" class="form-control" id="emailOrPhone" placeholder="Enter email or 10-digit phone" required>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label"><i class="fas fa-lock"></i> Password</label>
+        <div class="input-group">
+          <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+          <button class="btn btn-outline-secondary password-toggle" type="button" id="togglePassword">
+            <i class="fas fa-eye" id="toggleIcon"></i>
+          </button>
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-login w-100">
+        <i class="fas fa-sign-in-alt"></i> Login
+      </button>
+    </form>
+    
+    <div class="text-center mt-4">
+      <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const baseUrl = "http://localhost:8080";
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const togglePassword = document.getElementById('togglePassword');
+      const passwordInput = document.getElementById('password');
+      const toggleIcon = document.getElementById('toggleIcon');
+      
+      if (togglePassword && passwordInput && toggleIcon) {
+        togglePassword.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const currentType = passwordInput.getAttribute('type');
+          const newType = currentType === 'password' ? 'text' : 'password';
+          passwordInput.setAttribute('type', newType);
+          
+          if (newType === 'password') {
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+          } else {
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+          }
+        });
+      }
+    });
+    
+    function showAlert(message, type) {
+      const alertContainer = document.getElementById('alert-container');
+      alertContainer.innerHTML = `
+        <div class="alert alert-${type} alert-custom alert-dismissible fade show" role="alert">
+          ${message}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      `;
+    }
+    
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('emailOrPhone').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+        const response = await fetch(`${baseUrl}/users/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({ email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          showAlert('✅ Login successful! Redirecting...', 'success');
+          
+          sessionStorage.setItem('userId', data.data.id);
+          sessionStorage.setItem('userPhone', data.data.phone);
+          sessionStorage.setItem('userName', data.data.name);
+          sessionStorage.setItem('userEmail', data.data.email);
+          sessionStorage.setItem('loginTime', new Date().toISOString());
+          
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1000);
+        } else {
+          showAlert('❌ ' + (data.message || 'Invalid credentials'), 'danger');
+        }
+      } catch (error) {
+        showAlert('❌ Login failed. Please try again.', 'danger');
+        console.error('Login error:', error);
+      }
+    });
+  </script>
+</body>
+</html>
